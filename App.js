@@ -1,12 +1,54 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { createStorageInstance, saveDeckTitle, addCardToDeck } from './storage/appStorage'
 
 export default function App() {
+
+  const [ decks, setDecks ] = useState()
+
+  useEffect(() => {
+    (async () => {
+      try{
+        const decks = await createStorageInstance()
+        setDecks({...JSON.parse(decks)})
+      }catch(e){
+        console.warn("Error createStorageInstance", e)
+      }
+    })()
+  }, [])
+
+  const addNewDeck = async (title) => {
+    try{
+      const updatedDecks = await saveDeckTitle(title)
+      setDecks({
+        ...JSON.parse(updatedDecks)
+      })
+    }catch(e){
+      console.warn("Error saveDeckTitle", e)
+    }
+  }
+
+  const addCardToADeck = async ( title, question, answer ) => {
+    try{
+      const card = { question, answer }
+      const updatedDecks = await addCardToDeck({title, card})
+      setDecks({
+        ...JSON.parse(updatedDecks)
+      })
+    }catch(e){
+      console.warn("Error addCardToDeck", e)
+    }
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text>Current decks: {JSON.stringify(decks)}</Text>
+      <TouchableOpacity
+        onPress={() => addNewDeck('JavaScript') }
+      >
+        <Text>Update Decks</Text>
+      </TouchableOpacity>
     </View>
   );
 }
