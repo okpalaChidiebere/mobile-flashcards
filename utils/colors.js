@@ -1,0 +1,8 @@
+export const colorPrimaryDark = '#00796B'
+export const colorPrimary = '#009688'
+export const colorLightPrimary = '#B2DFDB'
+export const colorAccent = '#FFC107'
+export const colorPrimaryText = '#212121'
+export const colorSecondaryText = '#757575'
+export const colorDivider = '#BDBDBD'
+export const icons = '#FFFFFF'
