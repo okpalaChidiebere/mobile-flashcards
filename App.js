@@ -2,37 +2,15 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Platform } from 'react-native';
 import { createStorageInstance, saveDeckTitle, addCardToDeck } from './storage/appStorage'
+import { DecksProvider } from './storage/DecksContext'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { DECK_LIST_TAB, ADD_DECK_TAB } from './utils/constants'
-import { icons, colorPrimary } from './utils/colors'
+import { icons, colorPrimary, colorLightPrimary } from './utils/colors'
 import AddDeckPage from './components/AddDeckPage'
 import DeckListPage from './components/DeckListPage'
 
-
-const DATA = [
-  {
-    title: 'First Item',
-    numberOfCards: 3,
-  },
-  {
-    title: 'Second Item',
-    numberOfCards: 2,
-  },
-  {
-    title: 'Second Item',
-    numberOfCards: 2,
-  },
-  {
-    title: 'Second Item',
-    numberOfCards: 2,
-  },
-  {
-    title: 'Second Item',
-    numberOfCards: 2,
-  },
-];
 
 const Tabs =
   Platform.OS === 'ios'
@@ -51,8 +29,10 @@ export default function App() {
             header: null,
             showIcon: false,
             activeTintColor: Platform.OS === "ios" ? colorPrimary : icons,
+            indicatorStyle: { //for material-top-tab-navigator. Look at the commit info for more details
+              backgroundColor: colorLightPrimary },
             style: {
-                height: 80,
+                height: 60, //had to reduce the height ecause there is no icons
                 backgroundColor: Platform.OS === "ios" ? icons : colorPrimary,
                 shadowColor: "rgba(0, 0, 0, 0.24)",
                 shadowOffset: {
@@ -64,8 +44,8 @@ export default function App() {
             }
         }}
     >
-      <Tabs.Screen name={DECK_LIST_TAB} children={ ()=> <DeckListPage decks={DATA}/> }/>
-      <Tabs.Screen name={ADD_DECK_TAB} children={ () => <AddDeckPage handleAddnewDeck={addNewDeck}/> } />
+      <Tabs.Screen name={DECK_LIST_TAB} component={DeckListPage}/>
+      <Tabs.Screen name={ADD_DECK_TAB} component={AddDeckPage} />
     </Tabs.Navigator>
   )
 
@@ -104,17 +84,18 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <NavigationContainer>
-        <View style={//give space for status bar
-        {height: 50}}/>
-        <TabNav />
-      </NavigationContainer>
-      <DeckListPage decks={DATA}/>
-    </View>
+    <DecksProvider value={{ decks, handleAddnewDeck: addNewDeck }}>
+      <View style={styles.container}>
+        <NavigationContainer>
+          <View style={//give space for status bar
+          {height: 50}}/>
+          <TabNav />
+        </NavigationContainer>
+      </View>
+    </DecksProvider>
   );
 }
-//   <AddDeckPage handleAddnewDeck={addNewDeck}/> <DeckListPage decks={DATA}/>
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

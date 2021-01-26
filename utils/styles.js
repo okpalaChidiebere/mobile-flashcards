@@ -63,5 +63,5 @@ color: gray;
 export const InfiniteListContainer = styled.SafeAreaView`
 flex: 1;
 background-color: white;
-padding: 20px;
+padding: 2px 4px;
 `

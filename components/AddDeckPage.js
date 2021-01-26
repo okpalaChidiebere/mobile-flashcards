@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { View } from 'react-native'
 import { CenterView, TextPrimary, InputBoxCover, 
     StyledTextInput, SubmitButton, ButtonText } from '../utils/styles'
+import Context from '../storage/DecksContext'
 
 
-function AddDeckPage({ handleAddnewDeck }) {
 
+function AddDeckPage(props) {
+
+    const { handleAddnewDeck } = useContext(Context)
     const [value, onChangeText] = useState('');
 
     return (
