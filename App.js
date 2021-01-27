@@ -6,10 +6,12 @@ import { DecksProvider } from './storage/DecksContext'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import { DECK_LIST_TAB, ADD_DECK_TAB, DECK_DETAILS_STACK, HOME_STACK } from './utils/constants'
+import { DECK_LIST_TAB, ADD_DECK_TAB, DECK_DETAILS_STACK, 
+  HOME_STACK, ADD_CARD_STACK } from './utils/constants'
 import { icons, colorPrimary, colorLightPrimary } from './utils/colors'
 import AddDeckPage from './components/AddDeckPage'
 import DeckListPage from './components/DeckListPage'
+import AddCard, { AddCardNavigationOptions } from './components/AddCard'
 import DeckDetails, { DeckDetailsNavigationOptions } from './components/DeckDetails'
 import { createStackNavigator } from '@react-navigation/stack'
 
@@ -65,6 +67,11 @@ export default function App() {
           name={DECK_DETAILS_STACK}
           component={DeckDetails}
           options={DeckDetailsNavigationOptions}
+        />
+        <Stack.Screen
+          name={ADD_CARD_STACK}
+          component={AddCard}
+          options={AddCardNavigationOptions}
         />
     </Stack.Navigator>
   )

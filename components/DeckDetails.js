@@ -3,6 +3,9 @@ import { CenterView, TextPrimary, TextSecondary,
      SubmitButton, ButtonText } from '../utils/styles'
 import { View} from 'react-native'
 import { colorPrimary, icons, colorAccent } from '../utils/colors'
+import { CommonActions } from '@react-navigation/native'
+import { ADD_CARD_STACK } from '../utils/constants'
+
 
 function DeckDetails (props) {
     
@@ -15,7 +18,14 @@ function DeckDetails (props) {
             <View style={{alignSelf: 'center'}}>
                 <SubmitButton
                 buttonColor={"transparent"}
-                >
+                onPress={() => props.navigation.dispatch(
+                    CommonActions.navigate({
+                      name: ADD_CARD_STACK,
+                      params: {
+                        title: deck.title,
+                      },
+                    })
+                )}>
                     <ButtonText color={"#000"}>Add Card</ButtonText>
                 </SubmitButton>
                 <View style={{height: 20}}/>

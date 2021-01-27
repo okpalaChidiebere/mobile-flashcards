@@ -13,3 +13,4 @@ export const ADD_DECK_TAB = 'AddDeckPage' //Route to AddDeckPage Component
 /* Application Stacks */
 export const HOME_STACK = 'Home' //Route to App COmponent that renders a Tab Naigation that routes to DeckListPage and AddDeckPage
 export const DECK_DETAILS_STACK = 'DeckDetails' //Route to DeckDetails Component Page
+export const ADD_CARD_STACK = 'AddCard' //Route to AddCard Component
