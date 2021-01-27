@@ -3,7 +3,7 @@ import { View } from 'react-native'
 import { CenterView, TextPrimary, InputBoxCover, 
     StyledTextInput, SubmitButton, ButtonText } from '../utils/styles'
 import Context from '../storage/DecksContext'
-
+import { colorAccent } from '../utils/colors'
 
 
 function AddDeckPage(props) {
@@ -23,6 +23,7 @@ function AddDeckPage(props) {
             </InputBoxCover>
             <View style={{alignSelf: 'center'}}>
                 <SubmitButton
+                buttonColor={colorAccent}
                 onPress={() => handleAddnewDeck(value)}>
                     <ButtonText>Submit</ButtonText>
                 </SubmitButton>

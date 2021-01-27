@@ -1,12 +1,12 @@
 import React from 'react'
-import { DeckItem, DeckTextPrimary, DeckTextSecondary } from '../utils/styles'
+import { DeckItem, TextPrimary, TextSecondary } from '../utils/styles'
 
 function Deck ({ title, numberOfCards }){
 
     return(
         <DeckItem>
-            <DeckTextPrimary>{title}</DeckTextPrimary>
-            <DeckTextSecondary>{`${numberOfCards} Cards`}</DeckTextSecondary>
+            <TextPrimary fontSize={`${30}px`}>{title}</TextPrimary>
+            <TextSecondary>{`${numberOfCards} Cards`}</TextSecondary>
         </DeckItem>
     )
 }

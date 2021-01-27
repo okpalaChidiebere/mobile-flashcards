@@ -1,4 +1,5 @@
 import styled from 'styled-components/native'
+import { colorAccent } from './colors'
 
 export const StyledTextInput = styled.TextInput`
 border-bottom-color: rgb(0,0,0);
@@ -39,23 +40,20 @@ padding-right: 50px;
 justify-content: center;
 align-items: center;
 border-radius: 15px;
+border-color: ${colorAccent};
+border-width: 1px;
 `
 export const ButtonText = styled.Text`
-color: #fff;
+color: ${props => props.color || '#fff'};
 fontSize: 25px;
 `
 export const TextPrimary = styled.Text`
-font-size: 50px;
+font-size: ${props => props.fontSize || '50px'};
 text-align: center;
 `
 
-export const DeckTextPrimary = styled.Text`
-font-size: 30px;
-text-align: center;
-`
-
-export const DeckTextSecondary = styled.Text`
-font-size: 20px;
+export const TextSecondary = styled.Text`
+font-size: ${props => props.fontSize || '20px'};
 text-align: center;
 color: gray;
 `

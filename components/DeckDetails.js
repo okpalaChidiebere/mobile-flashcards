@@ -1,13 +1,31 @@
 import React  from 'react'
-import {Text, View} from 'react-native'
-import { colorPrimary, icons } from '../utils/colors'
+import { CenterView, TextPrimary, TextSecondary,
+     SubmitButton, ButtonText } from '../utils/styles'
+import { View} from 'react-native'
+import { colorPrimary, icons, colorAccent } from '../utils/colors'
 
 function DeckDetails (props) {
     
+    const { deck } = props.route.params
     return (
-        <View>
-            <Text>Deck Detail - {JSON.stringify(props.route.params.deck)}</Text>
-        </View>
+        <CenterView>
+            <TextPrimary>{deck.title}</TextPrimary>
+            <TextSecondary fontSize={`${30}px`} >{`${deck.questions.length} Cards`}</TextSecondary>
+            <View style={{height: 150}}/>
+            <View style={{alignSelf: 'center'}}>
+                <SubmitButton
+                buttonColor={"transparent"}
+                >
+                    <ButtonText color={"#000"}>Add Card</ButtonText>
+                </SubmitButton>
+                <View style={{height: 20}}/>
+                <SubmitButton
+                buttonColor={colorAccent}
+                >
+                    <ButtonText >Start Quizz</ButtonText>
+                </SubmitButton>
+            </View>
+        </CenterView>
     )
     
 }
