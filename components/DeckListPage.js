@@ -17,7 +17,7 @@ function DeckListPage(props) {
             CommonActions.navigate({
               name: DECK_DETAILS_STACK,
               params: {
-                deck: item,
+                title: item.title,
               },
             })
         )}>

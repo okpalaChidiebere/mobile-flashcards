@@ -111,7 +111,11 @@ export default function App() {
   }
 
   return (
-    <DecksProvider value={{ decks, handleAddnewDeck: addNewDeck }}>
+    <DecksProvider value={{ 
+      decks, 
+      handleAddnewDeck: addNewDeck, 
+      handleAddCardToADeck: addCardToADeck, 
+    }}>
       <View style={styles.container}>
         <NavigationContainer>
           <View style={//give space for status bar

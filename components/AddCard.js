@@ -1,13 +1,53 @@
-import React  from 'react'
-import {Text, View} from 'react-native'
-import { colorPrimary, icons } from '../utils/colors'
+import React, { useState, useContext }  from 'react'
+import { View, KeyboardAvoidingView, Platform } from 'react-native'
+import { colorPrimary, icons, colorAccent } from '../utils/colors'
+import { InputBoxCover, StyledTextInput, SubmitButton, ButtonText } from '../utils/styles'
+import Context from '../storage/DecksContext'
+import { CommonActions } from '@react-navigation/native';
+
 
 function AddCard (props) {
+
+    const [ state, setState ] = useState({
+        question: '',
+        answer: ''
+      })
+    const { handleAddCardToADeck } = useContext(Context)
+
+    const handleSubmit = () => {
+
+        const { title } = props.route.params
+        const { question, answer } = state
+
+        handleAddCardToADeck(title, question, answer)
+        props.navigation.dispatch(CommonActions.goBack())
+    }
     
     return (
-        <View>
-            <Text>Deck Detail - {JSON.stringify(props.route.params.title)}</Text>
-        </View>
+        <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
+            <InputBoxCover>
+                <StyledTextInput
+                placeholder="Question"
+                onChangeText={question => setState({...state, question})}
+                value={state.question}
+                />
+            </InputBoxCover>
+            <InputBoxCover>
+                <StyledTextInput
+                placeholder="Answer"
+                onChangeText={answer => setState({...state, answer})}
+                value={state.answer}
+                />
+            </InputBoxCover>
+            <View style={{alignSelf: 'center'}}>
+                <SubmitButton
+                buttonColor={colorAccent}
+                onPress={() => state.question !== '' && state.answer !== null && handleSubmit() }
+                >
+                    <ButtonText >Submit</ButtonText>
+                </SubmitButton>
+            </View>
+        </KeyboardAvoidingView>
     )
     
 }

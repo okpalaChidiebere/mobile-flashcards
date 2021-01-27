@@ -1,19 +1,21 @@
-import React  from 'react'
+import React, { useContext }  from 'react'
 import { CenterView, TextPrimary, TextSecondary,
      SubmitButton, ButtonText } from '../utils/styles'
 import { View} from 'react-native'
 import { colorPrimary, icons, colorAccent } from '../utils/colors'
 import { CommonActions } from '@react-navigation/native'
 import { ADD_CARD_STACK } from '../utils/constants'
+import Context from '../storage/DecksContext'
 
 
 function DeckDetails (props) {
     
-    const { deck } = props.route.params
+    const { decks } = useContext(Context)
+    const { title } = props.route.params
     return (
         <CenterView>
-            <TextPrimary>{deck.title}</TextPrimary>
-            <TextSecondary fontSize={`${30}px`} >{`${deck.questions.length} Cards`}</TextSecondary>
+            <TextPrimary>{decks[title].title}</TextPrimary>
+            <TextSecondary fontSize={`${30}px`} >{`${decks[title].questions.length} Cards`}</TextSecondary>
             <View style={{height: 150}}/>
             <View style={{alignSelf: 'center'}}>
                 <SubmitButton
@@ -22,7 +24,7 @@ function DeckDetails (props) {
                     CommonActions.navigate({
                       name: ADD_CARD_STACK,
                       params: {
-                        title: deck.title,
+                        title: decks[title].title,
                       },
                     })
                 )}>
@@ -44,7 +46,7 @@ export default DeckDetails
 
 export function DeckDetailsNavigationOptions({ route }) { //we haveaccess to the route props. we can get any parameter we want like ids from this props
 
-    const { deck } = route.params
+    const { title } = route.params
 
     return{
         //Styling the header for this Component
@@ -53,6 +55,6 @@ export function DeckDetailsNavigationOptions({ route }) { //we haveaccess to the
             backgroundColor: colorPrimary,
         },
         //End Etyling header for this Component
-        title: deck.title, 
+        title, 
     }
 }
