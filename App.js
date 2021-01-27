@@ -6,10 +6,12 @@ import { DecksProvider } from './storage/DecksContext'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import { DECK_LIST_TAB, ADD_DECK_TAB } from './utils/constants'
+import { DECK_LIST_TAB, ADD_DECK_TAB, DECK_DETAILS_STACK, HOME_STACK } from './utils/constants'
 import { icons, colorPrimary, colorLightPrimary } from './utils/colors'
 import AddDeckPage from './components/AddDeckPage'
 import DeckListPage from './components/DeckListPage'
+import DeckDetails, { DeckDetailsNavigationOptions } from './components/DeckDetails'
+import { createStackNavigator } from '@react-navigation/stack'
 
 
 const Tabs =
@@ -47,6 +49,24 @@ export default function App() {
       <Tabs.Screen name={DECK_LIST_TAB} component={DeckListPage}/>
       <Tabs.Screen name={ADD_DECK_TAB} component={AddDeckPage} />
     </Tabs.Navigator>
+  )
+
+  const Stack = createStackNavigator()
+  const MainNavigator = () => (
+    <Stack.Navigator headerMode="screen">
+        <Stack.Screen
+          name={HOME_STACK}
+          component={//we render the TabNav which renders the History and AddEntry Components which is our HomePage
+            TabNav}
+          options={ //No header styling for ths HomePage. We already have Tabs as Header in the HomePage
+            {headerShown: false}}
+        />
+        <Stack.Screen
+          name={DECK_DETAILS_STACK}
+          component={DeckDetails}
+          options={DeckDetailsNavigationOptions}
+        />
+    </Stack.Navigator>
   )
 
   useEffect(() => {
@@ -89,7 +109,7 @@ export default function App() {
         <NavigationContainer>
           <View style={//give space for status bar
           {height: 50}}/>
-          <TabNav />
+          <MainNavigator />
         </NavigationContainer>
       </View>
     </DecksProvider>

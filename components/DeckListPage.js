@@ -3,15 +3,26 @@ import { FlatList, TouchableOpacity } from 'react-native'
 import Deck from './Deck'
 import { InfiniteListContainer } from '../utils/styles'
 import Context from '../storage/DecksContext'
+import { DECK_DETAILS_STACK } from '../utils/constants'
+import { CommonActions } from '@react-navigation/native';
 
 
 function DeckListPage(props) {
 
     const { decks = [] } = useContext(Context)
     
-    const renderItem = ({ item, index }) => <TouchableOpacity>
-        <Deck title={item.title} numberOfCards={item.questions.length} />
-    </TouchableOpacity>
+    const renderItem = ({ item, index }) => (
+        <TouchableOpacity 
+        onPress={() => props.navigation.dispatch(
+            CommonActions.navigate({
+              name: DECK_DETAILS_STACK,
+              params: {
+                deck: item,
+              },
+            })
+        )}>
+            <Deck title={item.title} numberOfCards={item.questions.length} />
+        </TouchableOpacity>)
 
     //More on fLatlist props here https://www.pluralsight.com/guides/display-a-list-using-the-flatlist-component-in-react-native
     return (
