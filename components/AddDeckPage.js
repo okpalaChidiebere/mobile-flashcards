@@ -4,12 +4,28 @@ import { CenterView, TextPrimary, InputBoxCover,
     StyledTextInput, SubmitButton, ButtonText } from '../utils/styles'
 import Context from '../storage/DecksContext'
 import { colorAccent } from '../utils/colors'
+import { HOME_STACK, DECK_DETAILS_STACK } from '../utils/constants'
+import { CommonActions } from '@react-navigation/native'
 
 
 function AddDeckPage(props) {
 
     const { handleAddnewDeck } = useContext(Context)
     const [value, onChangeText] = useState('');
+
+    const handleSubmit = async () => {
+
+        await handleAddnewDeck(value)
+        props.navigation.dispatch(
+            CommonActions.navigate({
+              name: DECK_DETAILS_STACK,
+              params: {
+                title: value,
+              },
+            })
+        )
+
+    }
 
     return (
         <CenterView>
@@ -24,7 +40,7 @@ function AddDeckPage(props) {
             <View style={{alignSelf: 'center'}}>
                 <SubmitButton
                 buttonColor={colorAccent}
-                onPress={() => handleAddnewDeck(value)}>
+                onPress={() => value !== '' && handleSubmit()}>
                     <ButtonText>Submit</ButtonText>
                 </SubmitButton>
             </View>
