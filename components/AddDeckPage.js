@@ -15,15 +15,24 @@ function AddDeckPage(props) {
 
     const handleSubmit = async () => {
 
-        await handleAddnewDeck(value)
-        props.navigation.dispatch(
-            CommonActions.navigate({
-              name: DECK_DETAILS_STACK,
-              params: {
-                title: value,
-              },
+        if(value){
+            await handleAddnewDeck(value)
+            //routes the user to the Individual Deck view for the new deck.
+            //More efficient way of coding this https://stackoverflow.com/questions/61170112/how-to-use-navigation-navigate-from-a-component-outside-the-stack-navigation
+            props.navigation.dispatch({
+                ...CommonActions.goBack(),
+                source: HOME_STACK
             })
-        )
+            props.navigation.dispatch({ 
+                ...CommonActions.navigate({
+                    name: DECK_DETAILS_STACK,
+                    params: {
+                        title: value,
+                    },
+                })
+            })
+            //End routing
+        }
 
     }
 
