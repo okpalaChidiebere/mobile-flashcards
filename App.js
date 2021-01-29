@@ -14,6 +14,7 @@ import DeckListPage from './components/DeckListPage'
 import AddCard, { AddCardNavigationOptions } from './components/AddCard'
 import DeckDetails, { DeckDetailsNavigationOptions } from './components/DeckDetails'
 import { createStackNavigator } from '@react-navigation/stack'
+import QuizzItem from './components/QuizzItem'
 
 
 const Tabs =
@@ -117,11 +118,7 @@ export default function App() {
       handleAddCardToADeck: addCardToADeck, 
     }}>
       <View style={styles.container}>
-        <NavigationContainer>
-          <View style={//give space for status bar
-          {height: 50}}/>
-          <MainNavigator />
-        </NavigationContainer>
+        <QuizzItem question="Does React Native work with Android" answer="Yes" totalKeys={3} currentKey={1}/>
       </View>
     </DecksProvider>
   );
@@ -133,3 +130,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
+
+/*
+<DecksProvider value={{ 
+      decks, 
+      handleAddnewDeck: addNewDeck, 
+      handleAddCardToADeck: addCardToADeck, 
+    }}>
+      <View style={styles.container}>
+        <NavigationContainer>
+          <View style={//give space for status bar
+          {height: 50}}/>
+          <MainNavigator />
+        </NavigationContainer>
+      </View>
+    </DecksProvider>
+*/

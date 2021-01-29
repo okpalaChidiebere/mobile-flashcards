@@ -34,18 +34,18 @@ height: 200px;
 
 export const SubmitButton = styled.TouchableOpacity`
 background-color: ${props => props.buttonColor || '#000000'};
-padding: 20px;
-padding-left: 50px;
-padding-right: 50px;
+padding: ${props => props.padding || '20px'};
+padding-left: ${props => props.paddingRightLeft || '50px'};
+padding-right: ${props => props.paddingRightLeft || '50px'};
 justify-content: center;
 align-items: center;
 border-radius: 15px;
-border-color: ${colorAccent};
+border-color: ${props => props.colorAccent || 'transparent'};
 border-width: 1px;
 `
 export const ButtonText = styled.Text`
 color: ${props => props.color || '#fff'};
-fontSize: 25px;
+fontSize: ${props => props.fontSize || '25px'};
 `
 export const TextPrimary = styled.Text`
 font-size: ${props => props.fontSize || '50px'};
