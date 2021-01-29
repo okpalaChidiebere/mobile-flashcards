@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { View } from 'react-native'
+import { View, ToastAndroid, Platform } from 'react-native'
 import { CenterView, TextPrimary, InputBoxCover, 
     StyledTextInput, SubmitButton, ButtonText } from '../utils/styles'
 import Context from '../storage/DecksContext'
@@ -19,6 +19,13 @@ function AddDeckPage(props) {
             await handleAddnewDeck(value)
             //routes the user to the Individual Deck view for the new deck.
             //More efficient way of coding this https://stackoverflow.com/questions/61170112/how-to-use-navigation-navigate-from-a-component-outside-the-stack-navigation
+            Platform.OS == 'android' && (ToastAndroid.showWithGravityAndOffset(
+                'Deck Successfully created',
+                ToastAndroid.SHORT,
+                ToastAndroid.BOTTOM,
+                25,
+                50
+              ))
             props.navigation.dispatch({
                 ...CommonActions.goBack(),
                 source: HOME_STACK

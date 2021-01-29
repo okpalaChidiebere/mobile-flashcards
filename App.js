@@ -15,6 +15,16 @@ import AddCard, { AddCardNavigationOptions } from './components/AddCard'
 import DeckDetails, { DeckDetailsNavigationOptions } from './components/DeckDetails'
 import { createStackNavigator } from '@react-navigation/stack'
 import QuizzPage, { QuizzPageNavigationOptions } from './components/QuizzPage'
+import Constants from "expo-constants"
+
+
+function UdaciStatusBar ({backgroundColor, ...props}) {
+  return (
+    <View style={{backgroundColor, height: Constants.statusBarHeight}}>
+      <StatusBar translucent={true} backgroundColor={backgroundColor} {...props} />
+    </View>
+  )
+}
 
 
 const Tabs =
@@ -124,8 +134,7 @@ export default function App() {
     }}>
       <View style={styles.container}>
         <NavigationContainer>
-          <View style={//give space for status bar
-          {height: 50}}/>
+          <UdaciStatusBar backgroundColor={colorPrimary} barStyle="light-content" />
           <MainNavigator />
         </NavigationContainer>
       </View>

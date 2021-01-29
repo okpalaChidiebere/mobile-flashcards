@@ -38,3 +38,30 @@ function DeckListPage(props) {
 
 export default DeckListPage
 
+/*const styles = StyleSheet.create({
+    center: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 30,
+        marginLeft: 30,
+    }
+})
+
+
+<View>
+            {decks.length > 0 
+            ?(<InfiniteListContainer>
+            <FlatList 
+            data={Object.values(decks)} 
+            renderItem={renderItem} 
+            keyExtractor={(item, index) => `${index}`}
+            />
+            </InfiniteListContainer>)
+            : (
+                <View style={styles.center}>
+                    <Text>Your Deck is Empty</Text>
+                </View>
+            )}
+        </View>
+*/

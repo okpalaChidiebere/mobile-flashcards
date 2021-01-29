@@ -1,5 +1,5 @@
 import React, { useState, useContext }  from 'react'
-import { View, KeyboardAvoidingView, Platform } from 'react-native'
+import { View, KeyboardAvoidingView, Platform, ToastAndroid } from 'react-native'
 import { colorPrimary, icons, colorAccent } from '../utils/colors'
 import { InputBoxCover, StyledTextInput, SubmitButton, ButtonText } from '../utils/styles'
 import Context from '../storage/DecksContext'
@@ -21,6 +21,13 @@ function AddCard (props) {
 
         handleAddCardToADeck(title, question, answer)
         props.navigation.dispatch(CommonActions.goBack())
+        Platform.OS == 'android' && (ToastAndroid.showWithGravityAndOffset(
+            'Card Successfully added',
+            ToastAndroid.SHORT,
+            ToastAndroid.BOTTOM,
+            25,
+            50
+          ))
     }
     
     return (

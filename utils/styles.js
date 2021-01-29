@@ -3,7 +3,7 @@ import { colorAccent } from './colors'
 import { Animated } from 'react-native'
 
 export const StyledTextInput = styled.TextInput`
-border-bottom-color: rgb(0,0,0);
+border-bottom-color: ${colorAccent};
 border-bottom-width: 1px;
 height: 50px;
 fontSize: 20px;
@@ -12,7 +12,7 @@ margin: 10px 5px;
 text-decoration-line: none;
 `
 export const InputBoxCover = styled.View`
-border-color: rgb(0,0,0);
+border-color: ${colorAccent};
 border-radius: 10px;
 border-width: 1px;
 margin: 50px 20px;
@@ -28,7 +28,7 @@ export const DeckItem = styled.View`
 flex: 1;
 background-color: #fff;
 justify-content: center;
-border-bottom-color: rgb(0,0,0);
+border-bottom-color: ${colorAccent};
 border-bottom-width: 1px;
 height: 200px;
 `

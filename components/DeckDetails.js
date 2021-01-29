@@ -1,4 +1,4 @@
-import React, { useContext }  from 'react'
+import React, { useContext, useEffect }  from 'react'
 import { CenterView, TextPrimary, TextSecondary,
      SubmitButton, ButtonText } from '../utils/styles'
 import { View} from 'react-native'
