@@ -4,7 +4,7 @@ import { CenterView, TextPrimary, TextSecondary,
 import { View} from 'react-native'
 import { colorPrimary, icons, colorAccent } from '../utils/colors'
 import { CommonActions } from '@react-navigation/native'
-import { ADD_CARD_STACK } from '../utils/constants'
+import { ADD_CARD_STACK, START_QUIZZ_STACK } from '../utils/constants'
 import Context from '../storage/DecksContext'
 
 
@@ -33,6 +33,14 @@ function DeckDetails (props) {
                 <View style={{height: 20}}/>
                 <SubmitButton
                 buttonColor={colorAccent}
+                onPress={() => decks[title].questions.length > 0 && props.navigation.dispatch( //the user can start the quizz if card(s) is on this deck
+                    CommonActions.navigate({
+                      name: START_QUIZZ_STACK,
+                      params: {
+                        questions: decks[title].questions,
+                      },
+                    })
+                )}
                 >
                     <ButtonText >Start Quizz</ButtonText>
                 </SubmitButton>

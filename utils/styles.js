@@ -57,7 +57,7 @@ export const AnimatedTextPrimary = Animated.createAnimatedComponent(TextPrimary)
 export const TextSecondary = styled.Text`
 font-size: ${props => props.fontSize || '20px'};
 text-align: center;
-color: gray;
+color: ${props => props.color || 'gray'};
 `
 
 export const InfiniteListContainer = styled.SafeAreaView`

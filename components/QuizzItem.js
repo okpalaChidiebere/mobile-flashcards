@@ -18,7 +18,8 @@ function  QuizzItem(props){
       
     }
 
-    const { question, answer, totalKeys, currentKey } = props
+    const { question, answer, totalKeys, currentKey, handleNextQuestion } = props
+
     return (
         <View style={styles.container}>
             <View style={{flex: 1}}><Text style={{padding: 10, fontSize: 20}}>{`${currentKey}/${totalKeys}`}</Text></View>
@@ -42,6 +43,9 @@ function  QuizzItem(props){
                 paddingRightLeft="70px"
                 padding="10px"
                 colorAccent="transparent"
+                onPress={() => {
+                    setCheckAnswer(false) //the next question loads so we show the question again at first
+                    handleNextQuestion("Correct")}}
                 >
                     <ButtonText >Correct</ButtonText>
                 </SubmitButton>
@@ -51,6 +55,9 @@ function  QuizzItem(props){
                 paddingRightLeft="70px"
                 padding="10px"
                 colorAccent="transparent"
+                onPress={() => {
+                    setCheckAnswer(false) //the next question loads so we show the question again at first
+                    handleNextQuestion("Incorrect")}}
                 >
                     <ButtonText >Incorrect</ButtonText>
                 </SubmitButton>

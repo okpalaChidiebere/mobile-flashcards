@@ -7,14 +7,14 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { DECK_LIST_TAB, ADD_DECK_TAB, DECK_DETAILS_STACK, 
-  HOME_STACK, ADD_CARD_STACK } from './utils/constants'
+  HOME_STACK, ADD_CARD_STACK, START_QUIZZ_STACK } from './utils/constants'
 import { icons, colorPrimary, colorLightPrimary } from './utils/colors'
 import AddDeckPage from './components/AddDeckPage'
 import DeckListPage from './components/DeckListPage'
 import AddCard, { AddCardNavigationOptions } from './components/AddCard'
 import DeckDetails, { DeckDetailsNavigationOptions } from './components/DeckDetails'
 import { createStackNavigator } from '@react-navigation/stack'
-import QuizzItem from './components/QuizzItem'
+import QuizzPage, { QuizzPageNavigationOptions } from './components/QuizzPage'
 
 
 const Tabs =
@@ -74,6 +74,11 @@ export default function App() {
           component={AddCard}
           options={AddCardNavigationOptions}
         />
+        <Stack.Screen
+          name={START_QUIZZ_STACK}
+          component={QuizzPage}
+          options={QuizzPageNavigationOptions}
+        />
     </Stack.Navigator>
   )
 
@@ -118,7 +123,11 @@ export default function App() {
       handleAddCardToADeck: addCardToADeck, 
     }}>
       <View style={styles.container}>
-        <QuizzItem question="Does React Native work with Android" answer="Yes" totalKeys={3} currentKey={1}/>
+        <NavigationContainer>
+          <View style={//give space for status bar
+          {height: 50}}/>
+          <MainNavigator />
+        </NavigationContainer>
       </View>
     </DecksProvider>
   );
@@ -130,19 +139,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
-
-/*
-<DecksProvider value={{ 
-      decks, 
-      handleAddnewDeck: addNewDeck, 
-      handleAddCardToADeck: addCardToADeck, 
-    }}>
-      <View style={styles.container}>
-        <NavigationContainer>
-          <View style={//give space for status bar
-          {height: 50}}/>
-          <MainNavigator />
-        </NavigationContainer>
-      </View>
-    </DecksProvider>
-*/
