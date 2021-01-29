@@ -1,5 +1,6 @@
 import styled from 'styled-components/native'
 import { colorAccent } from './colors'
+import { Animated } from 'react-native'
 
 export const StyledTextInput = styled.TextInput`
 border-bottom-color: rgb(0,0,0);
@@ -40,7 +41,7 @@ padding-right: ${props => props.paddingRightLeft || '50px'};
 justify-content: center;
 align-items: center;
 border-radius: 15px;
-border-color: ${props => props.colorAccent || 'transparent'};
+border-color: ${props => props.colorAccent || colorAccent};
 border-width: 1px;
 `
 export const ButtonText = styled.Text`
@@ -51,6 +52,7 @@ export const TextPrimary = styled.Text`
 font-size: ${props => props.fontSize || '50px'};
 text-align: center;
 `
+export const AnimatedTextPrimary = Animated.createAnimatedComponent(TextPrimary)
 
 export const TextSecondary = styled.Text`
 font-size: ${props => props.fontSize || '20px'};

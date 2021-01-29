@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { StyleSheet, View, Text, Animated } from 'react-native'
-import { TextPrimary, SubmitButton, ButtonText } from '../utils/styles'
+import { SubmitButton, ButtonText, AnimatedTextPrimary } from '../utils/styles'
 
 
 
@@ -23,14 +23,13 @@ function  QuizzItem(props){
         <View style={styles.container}>
             <View style={{flex: 1}}><Text style={{padding: 10, fontSize: 20}}>{`${currentKey}/${totalKeys}`}</Text></View>
             <View style={{flex: 2}}>
-                    {/* How do i have pass the bounceValue into styled COmponent???
-                    <TextPrimary fontSize="45px">{`${question}?`}</TextPrimary> */}
-                    <Animated.Text style={{fontSize: 45, textAlign: 'center', transform: [{scale: bounceValue}]}}>{`${!checkAnswer ? question : answer}`}</Animated.Text>
+                    <AnimatedTextPrimary fontSize="45px" style={{transform: [{scale: bounceValue}]}}>{`${!checkAnswer ? question : answer}`}</AnimatedTextPrimary>
                     <View style={{alignItems: 'center', justifyContent: 'center'}}>
                         <SubmitButton
                         buttonColor="transparent"
                         paddingRightLeft="0px"
                         padding="10px"
+                        colorAccent="transparent"
                         onPress={() => flipCard()}
                         >
                             <ButtonText color="#ff0000" fontSize="20px">{!checkAnswer? 'Answer' : 'Question'}</ButtonText>
@@ -42,6 +41,7 @@ function  QuizzItem(props){
                 buttonColor="#008000"
                 paddingRightLeft="70px"
                 padding="10px"
+                colorAccent="transparent"
                 >
                     <ButtonText >Correct</ButtonText>
                 </SubmitButton>
@@ -50,6 +50,7 @@ function  QuizzItem(props){
                 buttonColor="#ff0000"
                 paddingRightLeft="70px"
                 padding="10px"
+                colorAccent="transparent"
                 >
                     <ButtonText >Incorrect</ButtonText>
                 </SubmitButton>
