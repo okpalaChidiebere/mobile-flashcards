@@ -22,8 +22,6 @@ export const clearLocalNotification = async () => {
 }
 
 function createNotification (trigger) {
-    console.log("here")
-
     return{
         channelId: DECKS_NOTIFICATION_CHANNEL_ID,
         content: {
@@ -67,11 +65,7 @@ export const setLocalNotification = async () => {
                     minute: 0,
                     repeats: true,
                     //seconds: 2,
-                });
-
-                const trigger = new Date(Date.now() + 60 * 1 * 1000);
-                trigger.setMinutes(0);
-                trigger.setSeconds(0);
+                })
 
                 Notifications.scheduleNotificationAsync(createNotification(nextTriggerDate))
 

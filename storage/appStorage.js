@@ -7,10 +7,10 @@ export const createStorageInstance = async () => {
     decks = await getDecks()
 
     if(decks !== null){
-        console.log("Getting the storage instance")
+        //console.log("Getting the storage instance")
         return decks
     }else{
-        console.log("creating the storage instance")
+        //console.log("creating the storage instance")
         await AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify({...decks}))
         return decks
     }
