@@ -4,7 +4,8 @@ import { colorPrimary, icons } from '../utils/colors'
 import QuizzItem from './QuizzItem'
 import { CenterView, TextPrimary, TextSecondary,
     SubmitButton, ButtonText } from '../utils/styles'
-    import { colorAccent } from '../utils/colors'
+import { colorAccent } from '../utils/colors'
+import  { clearLocalNotification, setLocalNotification } from '../utils/notifications'
 
 
 function QuizzPage(props) {
@@ -18,6 +19,15 @@ function QuizzPage(props) {
         if(optionChosen == "Correct"){
             setScore(score + 1)
         }
+
+        if(questions.length !== currQuestion ){
+            setUpNotification() //We set up a new one for tomorrow
+        }
+    }
+
+    const setUpNotification = async () => {
+        await clearLocalNotification() //we clear the local Notification
+        setLocalNotification()
     }
 
     const resetQuizz = () => {

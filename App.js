@@ -16,6 +16,7 @@ import DeckDetails, { DeckDetailsNavigationOptions } from './components/DeckDeta
 import { createStackNavigator } from '@react-navigation/stack'
 import QuizzPage, { QuizzPageNavigationOptions } from './components/QuizzPage'
 import Constants from "expo-constants"
+import { setLocalNotification } from './utils/notifications'
 
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
@@ -97,6 +98,7 @@ export default function App() {
       try{
         const decks = await createStorageInstance()
         setDecks({...JSON.parse(decks)})
+        setLocalNotification() //schedule initial notification
       }catch(e){
         console.warn("Error createStorageInstance", e)
       }
