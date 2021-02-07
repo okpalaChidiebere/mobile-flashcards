@@ -24,4 +24,4 @@ Sample of the way to configure your app.json file while rperaring your app for t
 https://stackoverflow.com/questions/64646250/expo-notifications-do-not-popup
 
 
-
+It will be great to give in sometimes(optional) and stay updated with react by learning about hooks [https://reactjs.org/docs/hooks-intro.html](https://reactjs.org/docs/hooks-intro.html). You can also get good design inspiration for your UI or apps from the following website [https://mobbin.design/](https://mobbin.design/)
